@@ -1,3 +1,11 @@
+# Memorizer game
+
+Click to reveal and match pairs of cards
+
+## Stack
+- ReactJS
+- Typescript
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
