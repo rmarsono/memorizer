@@ -57,8 +57,6 @@ const App = (): JSX.Element => {
     )
   );
 
-  const [lastOpenedCard, setLastOpenedCard] = useState<number | undefined>();
-
   useEffect(() => {
     const timer = setTimeout(
       () =>
@@ -91,7 +89,7 @@ const App = (): JSX.Element => {
     const timer = setTimeout(() => {
       setCards(
         cards.map((card, i) =>
-          !solved[card.card] && lastOpenedCard !== i
+          !solved[card.card] && card.open
             ? {
                 ...card,
                 open: false,
@@ -99,7 +97,7 @@ const App = (): JSX.Element => {
             : card
         )
       );
-    }, 500);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, [cards]);
@@ -116,18 +114,18 @@ const App = (): JSX.Element => {
               name={card}
               open={solved[card] || open}
               color={color}
-              setLastOpened={() => setLastOpenedCard(i)}
               toggleOpen={
-                solved[card]
+                solved[card] ||
+                cards.filter(({ card, open }) => open && !solved[card])
+                  .length === 2
                   ? () => null
                   : () =>
                       setCards(
                         cards.map((card, j) =>
                           i === j
                             ? {
-                                card: card.card,
+                                ...card,
                                 open: !card.open,
-                                color: card.color,
                               }
                             : card
                         )

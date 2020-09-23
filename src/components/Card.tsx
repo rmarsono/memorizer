@@ -6,21 +6,13 @@ export const Card = ({
   open,
   color,
   toggleOpen,
-  setLastOpened,
 }: {
   name: string;
   open: boolean;
   color: string;
   toggleOpen: () => void;
-  setLastOpened: () => void;
 }): JSX.Element => (
-  <Wrapper
-    color={color}
-    onClick={() => {
-      toggleOpen();
-      setLastOpened();
-    }}
-  >
+  <Wrapper color={color} onClick={() => toggleOpen()}>
     {open ? (
       <CardFront>
         <span>{name}</span>
