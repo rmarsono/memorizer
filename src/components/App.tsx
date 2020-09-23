@@ -4,17 +4,9 @@ import cards from '../mocks/cards.json';
 import { Card } from './Card';
 import styled from 'styled-components';
 import { shuffleArray } from '../utils/shuffleArray';
+import { generateRandomColor } from '../utils/generateRandomColor';
 
 const puzzleSize = 18;
-const hexLetters = '0123456789ABCDEF';
-
-const generateRandomColor = () =>
-  '#' +
-  Array.from({ length: 6 })
-    .map<string>(
-      () => hexLetters[Math.floor(Math.random() * hexLetters.length)]
-    )
-    .join('');
 
 const generateRandomIndexes: () => number[] = () => {
   const randomIndexes: number[] = [];
